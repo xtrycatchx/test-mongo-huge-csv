@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node lib/index.js",
+    "build": "babel src/ -d lib/",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -13,8 +15,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xtrycatchx/test-mongo-huge-csv/issues"
+  "devDependencies": {
+    "auto-bind": "^1.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.69.0",
   },
-  "homepage": "https://github.com/xtrycatchx/test-mongo-huge-csv#readme"
+  "dependencies": {
+    "awilix": "^3.0.6",
+    "express": "^4.16.3",
+    "method-override": "^2.3.10",
+    "mongodb": "^3.0.5"
+  }
 }
