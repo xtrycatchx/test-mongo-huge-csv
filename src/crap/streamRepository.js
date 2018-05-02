@@ -9,22 +9,24 @@ export default class StreamRepository {
 
     execute(res) {
 
+        //TODO use csv format
+        
         res.set('Content-Type', 'application/json');
         res.write('[');
-        var prevChunk = null;
+        let prevChunk = null;
 
-        var stream = db.get().collection('weird').find().stream()
-        stream.on('error', function (err) {
+        const stream = db.get().collection('weird').find().stream()
+        stream.on('error', err => {
             console.error(err)
         })
-        stream.on('data', function (doc) {
+        stream.on('data', doc => {
             console.log(doc)
             if (prevChunk) {
                 res.write(JSON.stringify(prevChunk) + ',');
             }
             prevChunk = doc;
         })
-        stream.on('end', function onEnd() {
+        stream.on('end', () => {
             if (prevChunk) {
                 res.write(JSON.stringify(prevChunk));
             }
