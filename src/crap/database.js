@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb"
 import { mongoUrl, dbName } from './config'
 
 export default class Database {
-    
+
     constructor({ mongoUrl, databaseName }) {
         this.connect(mongoUrl, databaseName)
     }
@@ -19,11 +19,11 @@ export default class Database {
         })
     }
 
-    static get() {
+    get() {
         return this.db
     }
 
-    static close(done) {
+    close(done) {
         return new Promise((resolve, reject) => {
             if (this.db) {
                 this.db.close((err, result) => {
