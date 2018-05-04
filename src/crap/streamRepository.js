@@ -1,10 +1,8 @@
 import * as db from './db'
 
 export default class StreamRepository {
-    constructor() {
-        db.connect(function () {
-            console.log("connected")
-        })
+    constructor({database}) {
+        this.database = database
     }
 
     execute(res) {
@@ -13,7 +11,7 @@ export default class StreamRepository {
         res.write('>>>>> HEADERS HERE');
         res.write('\r\n')
         let prevChunk = null;
-        const stream = db.get().collection('weird').find().stream()
+        const stream = this.database.get().collection('weird').find().stream()
         stream.on('error', err => {
             console.error(err)
         })

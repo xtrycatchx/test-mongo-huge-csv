@@ -3,7 +3,12 @@ import { MongoClient } from "mongodb"
 import { mongoUrl, dbName } from './config'
 
 export default class Database {
-    static connect(url) {
+    
+    constructor({ mongoUrl, databaseName }) {
+        this.connect(mongoUrl, databaseName)
+    }
+
+    connect(url, dbName) {
         return new Promise((resolve, reject) => {
             if (this.db) resolve()
             MongoClient.connect(url, (err, db) => {
