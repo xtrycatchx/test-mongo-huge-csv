@@ -1,6 +1,5 @@
 
 import { MongoClient } from "mongodb"
-import { mongoUrl, dbName } from './config'
 
 export default class Database {
 
